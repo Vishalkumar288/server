@@ -3,8 +3,10 @@ const app = express();
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
+require('dotenv').config();
+
 mongoose.connect(
-  "mongodb+srv://MyFirstDB:MomNDad_1010@mycluster.50e4enm.mongodb.net/",
+  process.env.MONGODB_URL,
   { useNewUrlParser: true, useUnifiedTopology: true }
 );
 
@@ -51,6 +53,6 @@ app.get("/notes", async (req, res) => {
   }
 });
 
-app.listen(5000, () => {
-  console.log("Server Started at port 5000");
+app.listen(process.env.PORT_NUMBER, () => {
+  console.log(`Server Started at port ${process.env.PORT_NUMBER}`);
 });
